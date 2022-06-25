@@ -1,0 +1,80 @@
+.movie-page {
+    .title-filter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+            button {
+            display: flex;
+            align-items: center;
+            border-radius: 3.14px;
+            border: none;
+            background-color: transparent;
+            color: #65749a;
+
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(101, 116, 154, 0.16);
+                color: #444f69
+            }
+            
+            span {
+                margin-left: 8px;
+            }
+        }
+    }    
+
+    .filter-content {
+        display: flex;
+        margin-bottom: 16px;
+
+        div {
+            margin-right: 16px;
+        }
+    }
+
+   .movies-list {
+    display: grid;
+    column-gap: 24px;
+    row-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    } 
+
+    .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+
+        select {
+            margin-right: 16px;
+            width: 50px;
+        }
+        .page-selector {
+            display: flex;
+            align-items: center;
+            
+            p {
+                margin: 0 16px;
+            }
+
+            .left-arrow {
+                color: #444f69;
+                cursor: pointer;
+
+                &.disabled {
+                    color: rgba(101,116,139, 0.16);
+                    cursor: default;
+                }
+            }
+            .right-arrow {
+                color: #444f69;
+                cursor: pointer;
+
+                &.disabled {
+                    color: rgba(101,116,139, 0.16);
+                    cursor: default;
+                }
+            }
+        } 
+    }
+
+}

@@ -1,0 +1,119 @@
+.movie-card {
+    width: 100%;
+    padding: 8px;
+    background-color: white;
+    min-height: 8rem;
+    border-radius: 3.14px;
+    box-shadow: 0 0 1px 0 rgba(36, 42, 56, 0.24), 0 1px 1px 0 rgba(36, 42, 56, 0.16);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .title-and-delete-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h4 {
+                font-family: 'Roboto' sans-serif;
+                font-size: 1rem;
+                font-weight: 500;
+                line-height: 1.5rem;
+                color: #556182;
+                margin: 0 0 4px 0;
+            }
+
+            .material-symbols-outlined {
+                color: #65749a;
+                cursor: pointer;
+
+                &:hover {
+                    color: #444f69
+                }
+            }
+    }
+
+    p {
+        font-family: 'Roboto' sans-serif;
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+        color: #556182;
+        margin: 0 0 4px 0;
+    }
+
+    .ratio-vote {
+        display: flex;
+        justify-content: space-between;
+        .ratio-like-dislike {
+                display: flex;
+                width: 100%;
+                .like-bar {
+                    height: 4px;
+                    background-color: green;
+                    position: relative;
+                    cursor: pointer;
+                }
+
+                .like-bar .tooltiptext {
+                    visibility: hidden;
+                    width: fit-content;
+                    background-color: black;
+                    color: #fff;
+                    text-align: center;
+                    border-radius: 6px;
+                    padding: 5px 20px;
+                    position: absolute;
+                    top: 10px;
+                    z-index: 1;
+                }
+
+                .dislike-bar {
+                    height: 4px;
+                    background-color: red;
+                    position: relative;
+                    cursor: pointer;
+                }
+
+                .dislike-bar .tooltiptext {
+                    visibility: hidden;
+                    width: fit-content;
+                    background-color: black;
+                    color: #fff;
+                    text-align: center;
+                    border-radius: 6px;
+                    padding: 5px 20px;
+                    position: absolute;
+                    top: 10px;
+                    right: 0;
+                    z-index: 1;
+                }
+        
+                .like-bar:hover .tooltiptext, .dislike-bar:hover .tooltiptext {
+                    visibility: visible;
+                }
+            }
+
+        .vote {
+            margin-right: 8px;
+            .thump-up {
+                color: #11893a;
+                cursor: pointer;
+
+                &:hover {
+                    color: #095a24
+                }
+            }
+
+            .thump-down {
+                color: #ec1340;
+                margin-left: 16px;
+                cursor: pointer;
+
+                &:hover {
+                    color: #a00d2C
+                }
+            }
+        }
+    }
+    
+   
+}
