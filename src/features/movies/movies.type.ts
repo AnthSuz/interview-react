@@ -12,4 +12,5 @@ export interface State {
     currentPage: number;
     numberPages: number;
     moviePerPage: 4 | 8 | 12;
+    filters: string [];
 }

@@ -9,14 +9,14 @@ interface Props {
 
 export const MovieCard = ({movie, index}: Props) => {
 
-    const { getRadioBar, handleDeleteMovie } = useMovieCard();
+    const { getRatioBar, handleDeleteMovie } = useMovieCard();
 
     return (
     <div className="movie-card">
         <div> 
             <div className="title-and-delete-button">
             <h4>{movie.title}</h4> 
-            <span className="material-symbols-outlined" onClick={() => handleDeleteMovie(index)}>
+            <span className="material-symbols-outlined" onClick={() => handleDeleteMovie(movie.id)}>
                 delete
             </span>
             </div>
@@ -26,7 +26,7 @@ export const MovieCard = ({movie, index}: Props) => {
 
 
         <div className="ratio-vote">
-            {getRadioBar(movie.likes, movie.dislikes)}
+            {getRatioBar(movie.likes, movie.dislikes)}
 
             <div className="vote">
                 <span className="material-symbols-outlined thump-up" onClick={() => console.log('ici')}>

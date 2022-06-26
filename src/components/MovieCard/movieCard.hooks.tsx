@@ -5,7 +5,7 @@ import { moviesData, removeMovie } from "../../features/movies/moviesTest";
 export function useMovieCard() {
     const movies = useAppSelector(moviesData);
     const dispatch = useAppDispatch();
-    const getRadioBar = useCallback((like: number, dislike: number) => {
+    const getRatioBar = useCallback((like: number, dislike: number) => {
         const likeWidth = Math.round(like * 100 / (like + dislike))
         const dislikeWidth = 100 - likeWidth;
         return (
@@ -19,12 +19,12 @@ export function useMovieCard() {
         )
     }, [])
 
-    const handleDeleteMovie = useCallback((index: number) => {
-        dispatch(removeMovie(index))
+    const handleDeleteMovie = useCallback((id: string) => {
+        dispatch(removeMovie(id))
     }, [])
 
     return {
-        getRadioBar,
+        getRatioBar,
         handleDeleteMovie
     }
 }

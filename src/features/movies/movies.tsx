@@ -16,7 +16,7 @@ export const Movies = () => {
         start,
         end 
     } = useMovies()
-    console.log('categories', categories)
+    
     return isLoading ? <p>Wait...</p> : 
     (
         <div className="movie-page"> 
@@ -35,9 +35,15 @@ export const Movies = () => {
             {getFilterContent}
 
             <div className="movies-list">
-                {movies.slice(start, end).map((movie, index) => {
+                {globalState.filters.length ? movies.filter(movie => globalState.filters.includes(movie.category)).slice(start, end).map((movie, index) => {
+                    return <MovieCard movie={movie} index={index} />
+                }) : movies.slice(start, end).map((movie, index) => {
+                // }) : movies.map((movie, index) => {
                     return <MovieCard movie={movie} index={index} />
                 })}
+                {/* {movies.filter(movie => globalState.filters.includes(movie.category)).slice(start, end).map((movie, index) => {
+                    return <MovieCard movie={movie} index={index} />
+                })} */}
             </div>
 
             <div className="pagination">
