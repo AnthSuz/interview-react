@@ -3,7 +3,7 @@ export interface Movie {
     title: string;
     category: string;
     likes: number;
-    dislikes: number
+    dislikes: number;
 }
 
 export interface State {
@@ -13,4 +13,6 @@ export interface State {
     numberPages: number;
     moviePerPage: 4 | 8 | 12;
     filters: string [];
+    likedMovies: string[];
+    dislikedMovies: string[];
 }

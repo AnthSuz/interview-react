@@ -4,12 +4,11 @@ import './movie-card.scss'
 import { useMovieCard } from "./movieCard.hooks"
 interface Props {
     movie: Movie;
-    index: number;
 }
 
-export const MovieCard = ({movie, index}: Props) => {
+export const MovieCard = ({movie}: Props) => {
 
-    const { getRatioBar, handleDeleteMovie } = useMovieCard();
+    const { getRatioBar, handleDeleteMovie, handleIsLikedMovie, globalState, voteContent } = useMovieCard(movie);
 
     return (
     <div className="movie-card">
@@ -22,23 +21,11 @@ export const MovieCard = ({movie, index}: Props) => {
             </div>
             <p>{movie.category}</p>
         </div>
-       
-
 
         <div className="ratio-vote">
             {getRatioBar(movie.likes, movie.dislikes)}
-
-            <div className="vote">
-                <span className="material-symbols-outlined thump-up" onClick={() => console.log('ici')}>
-                    thumb_up
-                </span>  
-                
-                <span className="material-symbols-outlined thump-down">
-                    thumb_down
-                </span>
-            </div>
+            {voteContent}
         </div>
-
     </div>
     )
 }

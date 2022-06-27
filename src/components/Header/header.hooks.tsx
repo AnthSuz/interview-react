@@ -1,4 +1,0 @@
-
-export function useHeader() {
-    return {}
-}

@@ -1,12 +1,16 @@
-import { useCallback } from "react"
+import { useCallback, useMemo } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { moviesData, removeMovie } from "../../features/movies/moviesTest";
+import { Movie } from "../../features/movies/movies.type";
+import { removeMovie, state, updateIsLiked } from "../../features/movies/moviesTest";
 
-export function useMovieCard() {
-    const movies = useAppSelector(moviesData);
+export function useMovieCard(movie: Movie) {
+    const globalState = useAppSelector(state)
     const dispatch = useAppDispatch();
+
     const getRatioBar = useCallback((like: number, dislike: number) => {
+        //Get width like bar
         const likeWidth = Math.round(like * 100 / (like + dislike))
+        //Get width disklike bar
         const dislikeWidth = 100 - likeWidth;
         return (
         <div className="ratio"> 
@@ -19,12 +23,33 @@ export function useMovieCard() {
         )
     }, [])
 
+    const voteContent = useMemo(() => {
+        return (
+            <div className="vote">
+                <span className={`material-symbols-outlined thump-up ${globalState.likedMovies.includes(movie.id) ? 'select' : ''}`} onClick={() => handleIsLikedMovie(movie.id, 'like')}>
+                    thumb_up
+                </span>  
+                
+                <span className={`material-symbols-outlined thump-down ${globalState.dislikedMovies.includes(movie.id) ? 'select' : ''}`} onClick={() => handleIsLikedMovie(movie.id, 'dislike')}>
+                    thumb_down
+                </span>
+            </div>
+        )
+    }, [globalState.likedMovies, globalState.dislikedMovies, movie.title])
+
     const handleDeleteMovie = useCallback((id: string) => {
         dispatch(removeMovie(id))
     }, [])
 
+    const handleIsLikedMovie = useCallback((movieId: string, value: 'like' | 'dislike') => {
+        dispatch(updateIsLiked({movieId, value}))
+    }, [])
+
     return {
         getRatioBar,
-        handleDeleteMovie
+        handleDeleteMovie,
+        handleIsLikedMovie,
+        globalState,
+        voteContent
     }
 }

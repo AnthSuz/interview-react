@@ -23,6 +23,7 @@
             }
 
             .material-symbols-outlined {
+                user-select: none;
                 color: #65749a;
                 cursor: pointer;
 
@@ -93,10 +94,15 @@
             }
 
         .vote {
+            user-select: none;
             margin-right: 8px;
             .thump-up {
-                color: #11893a;
+                color: #556182;
                 cursor: pointer;
+
+                &.select {
+                    color: green;
+                }
 
                 &:hover {
                     color: #095a24
@@ -104,9 +110,13 @@
             }
 
             .thump-down {
-                color: #ec1340;
+                color: #556182;
                 margin-left: 16px;
                 cursor: pointer;
+
+                &.select {
+                    color: red;
+                }
 
                 &:hover {
                     color: #a00d2C

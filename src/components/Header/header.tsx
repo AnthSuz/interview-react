@@ -1,4 +1,3 @@
-// import * from './assets/images/particeep'
 import particeepLogo from './assets/images/particeep.png'
 import './header.scss'
 

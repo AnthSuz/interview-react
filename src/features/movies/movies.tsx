@@ -4,9 +4,7 @@ import './movies.scss'
 
 export const Movies = () => {
     const { 
-        movies, 
         isLoading, 
-        categories, 
         onToggleFilter, 
         getFilterContent, 
         handleChangeMoviePerPages, 
@@ -14,9 +12,10 @@ export const Movies = () => {
         handleUpPage, 
         handleDownPage,
         start,
-        end 
+        end,
+        getContentNoData,
     } = useMovies()
-    
+
     return isLoading ? <p>Wait...</p> : 
     (
         <div className="movie-page"> 
@@ -34,26 +33,24 @@ export const Movies = () => {
             
             {getFilterContent}
 
+            {getContentNoData}
+
             <div className="movies-list">
-                {globalState.filters.length ? movies.filter(movie => globalState.filters.includes(movie.category)).slice(start, end).map((movie, index) => {
-                    return <MovieCard movie={movie} index={index} />
-                }) : movies.slice(start, end).map((movie, index) => {
-                // }) : movies.map((movie, index) => {
-                    return <MovieCard movie={movie} index={index} />
+                {globalState.filters.length ? globalState.movies.filter(movie => globalState.filters.includes(movie.category)).slice(start, end).map((movie, index) => {
+                    return <MovieCard movie={movie} key={index} />
+                }) : globalState.movies.slice(start, end).map((movie, index) => {
+                    return <MovieCard movie={movie} key={index}/>
                 })}
-                {/* {movies.filter(movie => globalState.filters.includes(movie.category)).slice(start, end).map((movie, index) => {
-                    return <MovieCard movie={movie} index={index} />
-                })} */}
             </div>
 
             <div className="pagination">
-            <select name="pagination" id="pagination" onChange={(e) => handleChangeMoviePerPages(parseInt(e.target.value) as 4 | 8 | 12)}>
+                <select defaultValue={12} name="pagination" id="pagination" onChange={(e) => handleChangeMoviePerPages(parseInt(e.target.value) as 4 | 8 | 12)}>
                     <option value={4}>4</option>
                     <option value={8}>8</option>
-                    <option value={12} selected>12</option>
+                    <option value={12}>12</option>
                 </select>  
                 <div className="page-selector">
-                    <span className={`material-symbols-outlined left-arrow ${globalState.currentPage === 1 ? 'disabled': ''}`} onClick={handleDownPage}>
+                    <span className={`material-symbols-outlined left-arrow ${globalState.currentPage < 2 ? 'disabled': ''}`} onClick={handleDownPage}>
                         chevron_left
                     </span>  
                     <p>{globalState.currentPage} / {globalState.numberPages}</p>
